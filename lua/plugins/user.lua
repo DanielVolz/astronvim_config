@@ -1,4 +1,19 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- Set up OSC 52 clipboard
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
+
+-- Yank to clipboard with 'y'
+vim.api.nvim_set_keymap('n', 'y', '\"+y', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'y', '\"+y', { noremap = true, silent = true })
 
 -- You can also add or configure plugins by creating files in this `plugins/` folder
 -- Here are some examples:
